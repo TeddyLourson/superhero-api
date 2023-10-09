@@ -1,0 +1,16 @@
+syntax = "proto3";
+package superhero.v1;
+option go_package = "github.com/digibearapp/supehero-api/gen/superhero/v1;superherov1";
+
+import "usr/v1/superhero.proto";
+
+message GetSuperheroRequest {
+  string id = 1;
+}
+message GetSuperheroResponse {
+  Superhero Superhero = 1;
+}
+
+service UsrService {
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {};
+}
