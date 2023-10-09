@@ -10,7 +10,6 @@ require (
 )
 
 require (
-	github.com/joho/godotenv v1.5.1
 	github.com/rs/cors v1.10.1
 	golang.org/x/net v0.16.0
 	golang.org/x/text v0.13.0 // indirect
