@@ -1,5 +1,5 @@
 syntax = "proto3";
-package usr.v1;
+package superhero.v1;
 option go_package = "github.com/digibearapp/superhero-api/gen/superhero/v1;superherov1";
 
 message Superhero {

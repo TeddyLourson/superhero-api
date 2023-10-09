@@ -1,34 +1,19 @@
 package main
 
 import (
-	"context"
-	"log"
 	"net/http"
-	"os"
 
-	"buf.build/gen/go/digibear/digibear/connectrpc/go/usr/v1/usrv1connect"
+	"buf.build/gen/go/teddy-lourson/superhero/connectrpc/go/superhero/v1/superherov1connect"
 	"github.com/digibearapp/digibear-api/modules"
-	pkgstore "github.com/digibearapp/digibear-api/pkg/store"
-	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-
-	store, err := pkgstore.NewStorePgx(context.Background(), os.Getenv("USR_DATABASE_URL"))
-	if err != nil {
-		log.Fatalf("Error creating store: %v", err)
-	}
-	usrStore := modules.NewUsrStorePgx(*store)
-	usrServer := modules.NewUsrServer(usrStore)
+	superheroServer := modules.NewSuperheroServer()
 	mux := http.NewServeMux()
-	path, handler := usrv1connect.NewUsrServiceHandler(usrServer)
+	path, handler := superherov1connect.NewSuperheroServiceHandler(superheroServer)
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"https://*", "http://*", "*"},
 		AllowedMethods:   []string{"HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS"},

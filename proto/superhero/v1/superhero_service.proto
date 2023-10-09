@@ -1,16 +1,14 @@
 syntax = "proto3";
 package superhero.v1;
-option go_package = "github.com/digibearapp/supehero-api/gen/superhero/v1;superherov1";
+option go_package = "github.com/digibearapp/superhero-api/gen/superhero/v1;superherov1";
 
-import "usr/v1/superhero.proto";
+import "superhero/v1/superhero.proto";
 
-message GetSuperheroRequest {
-  string id = 1;
-}
-message GetSuperheroResponse {
-  Superhero Superhero = 1;
+message GetSuperheroesRequest {}
+message GetSuperheroesResponse {
+  repeated Superhero superheroes = 1;
 }
 
-service UsrService {
-  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {};
+service SuperheroService {
+  rpc GetSuperheroes(GetSuperheroesRequest) returns (GetSuperheroesResponse) {};
 }
